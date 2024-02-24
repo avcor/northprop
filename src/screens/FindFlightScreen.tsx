@@ -19,11 +19,13 @@ const FindFlightScreen: FC = () => {
       <View style={style.imageParent}>
         <ImageAnim />
       </View>
+
       <View style={style.inputView}>
         <FindFlightInput />
       </View>
+
       <View style={{flex: 0.2, justifyContent: 'center'}}>
-        <View style={{flex: 0.35}}>
+        <View style={{flex: 0.4}}>
           <SearchButton />
         </View>
       </View>
@@ -40,9 +42,9 @@ const style = StyleSheet.create({
     paddingHorizontal: '5%',
   },
   imageParent: {
-    flex: 0.3,
+    flex: 0.4,
   },
   inputView: {
-    flex: 0.5,
+    flex: 0.55,
   },
 });
