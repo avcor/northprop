@@ -3,7 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import {SafeAreaView, Text} from 'react-native';
 import FindFlightScreen from './src/screens/FindFlightScreen';
-import ResultScreen from './src/screens/ResultScreen/ResultScreen';
+import ResultScreen from './src/screens/ResultScreen';
 
 export type RootStackParamList = {
   FindFlightScreen: any;

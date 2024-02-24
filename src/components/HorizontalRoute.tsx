@@ -1,27 +1,17 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
 import DashedLine from 'react-native-dashed-line';
 import {flightIconImg} from '../utils/imageExporter';
-import {
-  Montserrat,
-  MontserratBold,
-  MontserratMedium,
-  MontserratSemiBold,
-} from '../utils/font';
+import {Montserrat, MontserratSemiBold} from '../utils/font';
 import {textlightColor} from '../utils/color';
 
 const HorizontalRoute = ({}) => {
   return (
     <View style={style.parent}>
-      <View
-        style={{
-          flex: 1,
-          alignItems: 'center',
-        }}>
-        <Text style={[style.text]}>TEH</Text>
-        <Text style={[style.text, {fontFamily: Montserrat, fontSize: 12}]}>
-          India
-        </Text>
+      <View style={style.textContainer}>
+        <Text style={style.text}>TEH</Text>
+        <Text style={(style.text, style.secondText)}>India</Text>
       </View>
+
       <DashedLine
         dashColor={textlightColor}
         dashGap={6}
@@ -37,16 +27,10 @@ const HorizontalRoute = ({}) => {
         dashThickness={0.8}
         style={[style.dashedLine]}
       />
-      <View
-        style={{
-          flex: 1,
-          alignItems: 'center',
-          marginLeft: 9,
-        }}>
-        <Text style={[style.text, {}]}>MUN</Text>
-        <Text style={[style.text, {fontFamily: Montserrat, fontSize: 12}]}>
-          India
-        </Text>
+
+      <View style={[style.textContainer, style.marginL9]}>
+        <Text style={style.text}>MUN</Text>
+        <Text style={[style.text, style.secondText]}>India</Text>
       </View>
     </View>
   );
@@ -75,5 +59,13 @@ const style = StyleSheet.create({
     fontFamily: MontserratSemiBold,
     color: textlightColor,
     textAlign: 'center',
+  },
+  secondText: {fontFamily: Montserrat, fontSize: 12},
+  textContainer: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  marginL9: {
+    marginLeft: 9,
   },
 });

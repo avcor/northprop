@@ -25,7 +25,7 @@ const FindFlightScreen: FC = () => {
       </View>
 
       <View style={{flex: 0.2, justifyContent: 'center'}}>
-        <View style={{flex: 0.4}}>
+        <View style={style.searchButton}>
           <SearchButton />
         </View>
       </View>
@@ -46,5 +46,8 @@ const style = StyleSheet.create({
   },
   inputView: {
     flex: 0.55,
+  },
+  searchButton: {
+    flex: 0.4,
   },
 });

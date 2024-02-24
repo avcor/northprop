@@ -6,16 +6,12 @@ import {
   Text,
   View,
 } from 'react-native';
-import {backArrowImg} from '../../utils/imageExporter';
-import {
-  backgroundColor,
-  textDarkColor,
-  textlightColor,
-} from '../../utils/color';
-import {Montserrat, MontserratBold, MontserratMedium} from '../../utils/font';
-import HeaderWithBackBtn from '../../components/HeaderWithBackBtn';
-import HorizontalRoute from '../../components/HorizontalRoute';
-import FlightDetailCard from '../../components/flightcard/FlightCard';
+import {backArrowImg} from '../utils/imageExporter';
+import {backgroundColor, textDarkColor, textlightColor} from '../utils/color';
+import {Montserrat, MontserratBold, MontserratMedium} from '../utils/font';
+import HeaderWithBackBtn from '../components/HeaderWithBackBtn';
+import HorizontalRoute from '../components/HorizontalRoute';
+import FlightDetailCard from '../components/flightcard/FlightCard';
 
 const ResultScreen = ({}) => {
   return (
@@ -29,8 +25,8 @@ const ResultScreen = ({}) => {
       </View>
 
       <FlatList
-        ItemSeparatorComponent={() => <View style={{height: 10}} />}
-        style={{flex: 1, marginTop: 20}}
+        ItemSeparatorComponent={() => <View style={style.itemSeparator} />}
+        style={style.flatListContainer}
         data={[{title: 'Title 1'}, {title: 'Title 2'}]}
         renderItem={({item}) => <FlightDetailCard />}
       />
@@ -50,6 +46,13 @@ const style = StyleSheet.create({
   },
   routeContainer: {
     flex: 0.1,
+  },
+  flatListContainer: {
+    flex: 1,
+    marginTop: 20,
+  },
+  itemSeparator: {
+    height: 10,
   },
 });
 

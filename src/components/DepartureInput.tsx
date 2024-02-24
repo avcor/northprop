@@ -24,6 +24,7 @@ const DepartureInput = ({}) => {
           }}
         />
       </View>
+
       <View style={style.textInputFrom}>
         <Text style={style.textFromTo}>FROM</Text>
         <Text style={style.textDestination}>Tehran</Text>
