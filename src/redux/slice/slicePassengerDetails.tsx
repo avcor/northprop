@@ -1,13 +1,21 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit/react';
+import {passengerState} from '../../reducer/passengerFormReducer';
+
+export const defaultState: passengerState = {
+  from: 'Delhi',
+  to: 'Mumbai',
+  numOfPassenger: 1,
+};
 
 const slice = createSlice({
-  name: 'numOfPassenger',
-  initialState: 1,
+  name: 'passengerForm',
+  initialState: defaultState,
   reducers: {
-    increment: state => state + 1,
-    decrement: state => (state === 1 ? 1 : state - 1),
+    setStorePassengerForm: (state, actions) => {
+      return {...actions.payload};
+    },
   },
 });
 
-export const {increment, decrement} = slice.actions;
+export const {setStorePassengerForm} = slice.actions;
 export default slice.reducer;

@@ -3,12 +3,14 @@ import DashedLine from 'react-native-dashed-line';
 import {flightIconImg} from '../utils/imageExporter';
 import {Montserrat, MontserratSemiBold} from '../utils/font';
 import {textlightColor} from '../utils/color';
+import {useAppSelector} from '../redux/hooks';
 
 const HorizontalRoute = ({}) => {
+  const passengerForm = useAppSelector(state => state.passengerForm);
   return (
     <View style={style.parent}>
       <View style={style.textContainer}>
-        <Text style={style.text}>TEH</Text>
+        <Text style={style.text}>{passengerForm.from}</Text>
         <Text style={(style.text, style.secondText)}>India</Text>
       </View>
 
@@ -29,7 +31,7 @@ const HorizontalRoute = ({}) => {
       />
 
       <View style={[style.textContainer, style.marginL9]}>
-        <Text style={style.text}>MUN</Text>
+        <Text style={style.text}>{passengerForm.to}</Text>
         <Text style={[style.text, style.secondText]}>India</Text>
       </View>
     </View>
@@ -62,8 +64,9 @@ const style = StyleSheet.create({
   },
   secondText: {fontFamily: Montserrat, fontSize: 12},
   textContainer: {
-    flex: 1,
+    // flex: 1,
     alignItems: 'center',
+    flexGrow: 1,
   },
   marginL9: {
     marginLeft: 9,

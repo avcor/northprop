@@ -9,3 +9,7 @@ export const flightSeat = require('../assets/images/flight_seat.png')
 export const backArrowImg = require('../assets/images/back_arrow.png')
 
 export const rupeeIcon = require('../assets/images/rupee_icon.png')
+
+export const sortImg = require('../assets/images/sort_icon.png')
+export const filterImg = require('../assets/images/filter_icon.png')
+export const searchImg = require('../assets/images/search_icon.png')

@@ -10,8 +10,13 @@ import DashedLine from 'react-native-dashed-line';
 import {iconColor, textDarkColor, textlightColor} from '../utils/color';
 import {airplaneArrivalImg} from '../utils/imageExporter';
 import {MontserratSemiBold} from '../utils/font';
+import {FC} from 'react';
 
-const ArrivalInput = ({}) => {
+type prop = {
+  onChange: (it: string) => void;
+};
+
+const ArrivalInput: FC<prop> = ({onChange}) => {
   return (
     <KeyboardAvoidingView style={[style.textInputContainer]}>
       <View style={{marginBottom: '4%'}}>
@@ -34,6 +39,9 @@ const ArrivalInput = ({}) => {
       <View style={style.textInputTo}>
         <Text style={style.textFromTo}>To</Text>
         <TextInput
+          onChangeText={it => {
+            onChange(it);
+          }}
           style={style.textDestination}
           placeholder="Mumbai"></TextInput>
       </View>

@@ -1,15 +1,27 @@
 import {View, Text, StyleSheet} from 'react-native';
 import {textlightColor, textDarkColor} from '../../../utils/color';
 import {MontserratMedium} from '../../../utils/font';
+import {FC} from 'react';
 
-const VerticalDataText = ({}) => {
+type props = {
+  data: {
+    d1: string;
+    d2: string;
+  };
+  textView: {
+    t1: string;
+    t2: string;
+  };
+};
+
+const VerticalDataText: FC<props> = ({data, textView}) => {
   return (
     <View>
-      <Text style={styles.textDep}>DEPARTURE</Text>
-      <Text style={styles.textDark}>21 : 30</Text>
+      <Text style={styles.textDep}>{textView.t1}</Text>
+      <Text style={styles.textDark}>{data.d1}</Text>
 
-      <Text style={[styles.textDep, styles.marginT10]}>FLIGHT NO.</Text>
-      <Text style={styles.textDark}>KW 78</Text>
+      <Text style={[styles.textDep, styles.marginT10]}>{textView.t2}</Text>
+      <Text style={styles.textDark}>{data.d2}</Text>
     </View>
   );
 };

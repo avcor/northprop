@@ -1,22 +1,14 @@
-import {
-  Image,
-  StyleSheet,
-  Text,
-  Touchable,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {flightSeat} from '../utils/imageExporter';
-import {iconColor, textDarkColor, textlightColor} from '../utils/color';
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {RootStackParamList} from '../../App';
-import {useAppDispatch, useAppSelector} from '../redux/hooks';
-import {decrement, increment} from '../redux/slice/slicePassengerDetails';
+import {textDarkColor, textlightColor} from '../utils/color';
+import {FC, useState} from 'react';
 
-const AddPassenger = ({}) => {
-  const dispatch = useAppDispatch();
-  const passengerDetails = useAppSelector(state => state.numOfPassenger);
+type prop = {
+  onChange: (it: number) => void;
+};
+
+const AddPassenger: FC<prop> = ({onChange}) => {
+  const [num, setNum] = useState(1);
 
   return (
     <View style={style.parent}>
@@ -29,15 +21,23 @@ const AddPassenger = ({}) => {
         <TouchableOpacity
           style={style.touchContainer}
           onPress={() => {
-            dispatch(decrement());
+            setNum(state => {
+              let v = state === 1 ? 1 : state - 1;
+              onChange(v);
+              return v;
+            });
           }}>
           <Text style={style.decText}>-</Text>
         </TouchableOpacity>
-        <Text style={style.currText}>{passengerDetails}</Text>
+        <Text style={style.currText}>{num}</Text>
         <TouchableOpacity
           style={style.touchContainer}
           onPress={() => {
-            dispatch(increment());
+            setNum(state => {
+              const v = state + 1;
+              onChange(v);
+              return v;
+            });
           }}>
           <Text style={style.incText}>+</Text>
         </TouchableOpacity>

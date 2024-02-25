@@ -1,13 +1,11 @@
-type FlightApiResponse = {
-    json(): any;
+export type flightApiResponse  = {
     data: {
-      result: Flight[];
+      result: flightDataModel[];
     };
     message: string;
 };
 
-
-type Flight = {
+export type flightDataModel = {
     id: string;
     fare: number;
     displayData: {

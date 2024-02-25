@@ -1,31 +1,17 @@
 import {FC, useEffect} from 'react';
-import {
-  Dimensions,
-  KeyboardAvoidingView,
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import ImageAnim from '../components/ImageAnim';
 import FindFlightInput from '../components/FindFlightInput';
-import {backgroundColor, gradientColorPinkPurple} from '../utils/color';
-import SearchButton from '../components/SearchButton';
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {RootStackParamList} from '../../App';
-import {useAppDispatch, useAppSelector} from '../redux/hooks';
+import {backgroundColor} from '../utils/color';
+import {useAppDispatch} from '../redux/hooks';
 import {fetchData} from '../redux/slice/sliceFlightData';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 const FindFlightScreen: FC = () => {
-  const navigation =
-    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    // dispatch(fetchData());
-  });
+    dispatch(fetchData());
+  }, []);
 
   console.log('flight screen ');
   return (

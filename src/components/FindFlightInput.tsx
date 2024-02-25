@@ -1,43 +1,78 @@
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {iconColor, textDarkColor, textlightColor} from '../utils/color';
-import {Montserrat, MontserratBold, MontserratSemiBold} from '../utils/font';
-import {airplaneArrivalImg, airplaneDepartureImg} from '../utils/imageExporter';
+import {Alert, StyleSheet, Text, View} from 'react-native';
+import {textDarkColor, textlightColor} from '../utils/color';
+import {Montserrat, MontserratBold} from '../utils/font';
 import AddPassenger from './AddPassenger';
-import DashedLine from 'react-native-dashed-line';
 import DepartureInput from './DepartureInput';
 import ArrivalInput from './ArrivalInput';
-import SearchButton from './SearchButton';
+import SearchButton from './GradientButton';
 import {useRef} from 'react';
+import {passengerState} from '../reducer/passengerFormReducer';
+import {
+  defaultState,
+  setStorePassengerForm,
+} from '../redux/slice/slicePassengerDetails';
+import {useAppDispatch, useAppSelector} from '../redux/hooks';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {RootStackParamList} from '../../App';
+import {searchImg} from '../utils/imageExporter';
 
 const FindFlightInput = ({}) => {
-  const fromRef = useRef({});
+  const formRef = useRef<passengerState>(defaultState);
+  const dispatchStore = useAppDispatch();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
+  const departureLoc = (it: string) => {
+    formRef.current = {
+      ...formRef.current,
+      from: it,
+    };
+  };
+
+  const arrivalLoc = (it: string) => {
+    formRef.current = {
+      ...formRef.current,
+      to: it,
+    };
+  };
+  const passengerNum = (it: number) => {
+    formRef.current = {
+      ...formRef.current,
+      numOfPassenger: it,
+    };
+  };
 
   return (
     <View style={style.parent}>
       <Text style={style.headText}>Book Your Flight</Text>
       <Text style={style.subHeadText}>Where would you want to go?</Text>
 
-      <DepartureInput />
+      <DepartureInput onChange={departureLoc} />
 
-      <ArrivalInput />
+      <ArrivalInput onChange={arrivalLoc} />
 
       <View style={style.addPassengerContainer}>
-        <AddPassenger />
+        <AddPassenger onChange={passengerNum} />
       </View>
 
-      <View
-        style={{
-          flex: 1.5,
-          justifyContent: 'center',
-          alignContent: 'center',
-        }}>
-        <TouchableOpacity
-          style={style.searchButton}
-          onPress={() => {
-            // navigation.navigate('ResultScreen');
-          }}>
-          <SearchButton />
-        </TouchableOpacity>
+      <View style={style.searchButtonContainer}>
+        <View style={style.searchButton}>
+          <SearchButton
+            text="Search Flights"
+            icon={searchImg}
+            onPress={() => {
+              if (formRef.current.from.length <= 0)
+                Alert.alert('Please add Departure Location');
+              else if (formRef.current.to.length <= 0)
+                Alert.alert('Please add arrival Location');
+              else {
+                dispatchStore(setStorePassengerForm(formRef.current));
+                navigation.navigate('ResultScreen');
+              }
+            }}
+          />
+        </View>
       </View>
     </View>
   );
@@ -66,5 +101,10 @@ const style = StyleSheet.create({
   },
   searchButton: {
     flex: 0.45,
+  },
+  searchButtonContainer: {
+    flex: 1.5,
+    justifyContent: 'center',
+    alignContent: 'center',
   },
 });

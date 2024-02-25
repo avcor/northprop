@@ -3,14 +3,40 @@ import {flightIconImg} from '../../utils/imageExporter';
 import AirlineDetailsPrice from './_comp/AirlineDetailsPrice';
 import BillDashLine from './_comp/BillDashLine';
 import VerticalDataText from './_comp/VerticalDataText';
+import {flightDataModel} from '../../type/FlightType';
+import {FC} from 'react';
+import {convertTo24HourFormat, getAirlineNumber} from '../../utils/utilts';
+import React from 'react';
 
-const FlightDetailCard = ({}) => {
+type props = {
+  item: flightDataModel;
+};
+
+const FlightDetailCard: FC<props> = ({item}) => {
   return (
     <View style={styles.parentcontainer}>
       <View style={styles.dataContainer}>
-        <VerticalDataText />
+        <VerticalDataText
+          textView={{
+            t1: 'DEPARTURE',
+            t2: 'FLIGHT NO.',
+          }}
+          data={{
+            d1: convertTo24HourFormat(item.displayData.source.depTime),
+            d2: getAirlineNumber(item),
+          }}
+        />
         <Image style={styles.flightIcon} source={flightIconImg} />
-        <VerticalDataText />
+        <VerticalDataText
+          textView={{
+            t1: 'ARRIVAL',
+            t2: 'CLASS',
+          }}
+          data={{
+            d1: convertTo24HourFormat(item.displayData.destination.arrTime),
+            d2: 'Economy',
+          }}
+        />
       </View>
 
       <View style={styles.dashContainer}>
@@ -18,13 +44,16 @@ const FlightDetailCard = ({}) => {
       </View>
 
       <View style={styles.airDetailContainer}>
-        <AirlineDetailsPrice />
+        <AirlineDetailsPrice
+          flightName={item.displayData.airlines[0].airlineName}
+          price={item.fare.toString()}
+        />
       </View>
     </View>
   );
 };
 
-export default FlightDetailCard;
+export default React.memo(FlightDetailCard);
 
 const styles = StyleSheet.create({
   parentcontainer: {
