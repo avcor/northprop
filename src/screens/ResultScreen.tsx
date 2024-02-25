@@ -1,4 +1,4 @@
-import {Button, FlatList, StyleSheet, View} from 'react-native';
+import {Button, FlatList, StyleSheet, Text, View} from 'react-native';
 import {backgroundColor} from '../utils/color';
 import HeaderWithBackBtn from '../components/HeaderWithBackBtn';
 import HorizontalRoute from '../components/HorizontalRoute';
@@ -21,6 +21,7 @@ const ResultScreen = ({}) => {
   const sortAscendingRef = useRef(true);
   const [isModalVisible, setModalVisible] = useState(false);
 
+  console.log(filteredList.data.length);
   const SortFunc = () => {
     if (sortAscendingRef.current === true) {
       // ascending sort has been done, now change to descending
@@ -53,6 +54,17 @@ const ResultScreen = ({}) => {
         ItemSeparatorComponent={() => <View style={style.itemSeparator} />}
         style={style.flatListContainer}
         data={filteredList.data}
+        ListEmptyComponent={() => {
+          console.log('empty');
+          return (
+            <View
+              style={{
+                flex: 1,
+              }}>
+              <Text>No Data</Text>
+            </View>
+          );
+        }}
         renderItem={({item}) => {
           return <FlightDetailCard item={item} />;
         }}
