@@ -15,13 +15,11 @@ export default ImageAnim
 const styles = StyleSheet.create({
     parent:{
         flex: 1,
-        backgroundColor: 'blue',
         overflow:'hidden',
         justifyContent: 'center',
         alignItems:'center'
     },
     imageView:{
         flex:1,
-        backgroundColor:'red'
     }
 })
