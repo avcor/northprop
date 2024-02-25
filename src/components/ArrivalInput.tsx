@@ -81,5 +81,6 @@ const style = StyleSheet.create({
     color: textDarkColor,
     flex: 0.5,
     padding: -10,
+    width: 200,
   },
 });

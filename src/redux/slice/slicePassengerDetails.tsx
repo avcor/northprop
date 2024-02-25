@@ -2,8 +2,8 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit/react';
 import {passengerState} from '../../reducer/passengerFormReducer';
 
 export const defaultState: passengerState = {
-  from: 'Delhi',
-  to: 'Mumbai',
+  from: '',
+  to: '',
   numOfPassenger: 1,
 };
 
