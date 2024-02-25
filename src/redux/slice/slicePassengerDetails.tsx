@@ -9,5 +9,5 @@ const slice = createSlice({
   },
 });
 
-export const {increment} = slice.actions;
+export const {increment, decrement} = slice.actions;
 export default slice.reducer;

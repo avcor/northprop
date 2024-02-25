@@ -1,4 +1,11 @@
-import {View, Image, Text, StyleSheet} from 'react-native';
+import {
+  View,
+  Image,
+  Text,
+  StyleSheet,
+  KeyboardAvoidingView,
+  TextInput,
+} from 'react-native';
 import DashedLine from 'react-native-dashed-line';
 import {iconColor, textDarkColor, textlightColor} from '../utils/color';
 import {airplaneArrivalImg} from '../utils/imageExporter';
@@ -6,7 +13,7 @@ import {MontserratSemiBold} from '../utils/font';
 
 const ArrivalInput = ({}) => {
   return (
-    <View style={[style.textInputContainer]}>
+    <KeyboardAvoidingView style={[style.textInputContainer]}>
       <View style={{marginBottom: '4%'}}>
         <DashedLine
           axis="vertical"
@@ -26,9 +33,11 @@ const ArrivalInput = ({}) => {
       </View>
       <View style={style.textInputTo}>
         <Text style={style.textFromTo}>To</Text>
-        <Text style={style.textDestination}>Tehran</Text>
+        <TextInput
+          style={style.textDestination}
+          placeholder="Mumbai"></TextInput>
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -62,5 +71,7 @@ const style = StyleSheet.create({
   textDestination: {
     fontSize: 19,
     color: textDarkColor,
+    flex: 0.5,
+    padding: -10,
   },
 });

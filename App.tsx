@@ -5,7 +5,7 @@ import {SafeAreaView, Text} from 'react-native';
 import FindFlightScreen from './src/screens/FindFlightScreen';
 import ResultScreen from './src/screens/ResultScreen';
 import {Provider} from 'react-redux';
-import store from './src/redux/store';
+import store from './src/redux/store/store';
 
 export type RootStackParamList = {
   FindFlightScreen: any;

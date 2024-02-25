@@ -1,6 +1,6 @@
 import {configureStore} from '@reduxjs/toolkit';
-import slice from './slice';
-import sliceFlightData from './sliceFlightData';
+import slice from '../slice/slicePassengerDetails';
+import sliceFlightData from '../slice/sliceFlightData';
 
 const store = configureStore({
   reducer: {

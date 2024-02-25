@@ -1,4 +1,11 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {
+  Image,
+  KeyboardAvoidingView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 import DashedLine from 'react-native-dashed-line';
 import {iconColor, textDarkColor, textlightColor} from '../utils/color';
 import {airplaneDepartureImg} from '../utils/imageExporter';
@@ -6,7 +13,7 @@ import {MontserratSemiBold} from '../utils/font';
 
 const DepartureInput = ({}) => {
   return (
-    <View style={[style.textInputContainer]}>
+    <KeyboardAvoidingView style={[style.textInputContainer]}>
       <View style={{marginTop: '2.5%'}}>
         <Image style={style.flight_icon_dep} source={airplaneDepartureImg} />
         <DashedLine
@@ -15,21 +22,17 @@ const DepartureInput = ({}) => {
           dashLength={6}
           dashThickness={1.6}
           dashColor={iconColor}
-          style={{
-            flex: 1,
-            marginLeft: 28,
-            marginTop: 6,
-            marginBottom: 10,
-            overflow: 'hidden',
-          }}
+          style={style.dashLine}
         />
       </View>
 
       <View style={style.textInputFrom}>
         <Text style={style.textFromTo}>FROM</Text>
-        <Text style={style.textDestination}>Tehran</Text>
+        <TextInput
+          style={style.textDestination}
+          placeholder="Delhi"></TextInput>
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -45,7 +48,7 @@ const style = StyleSheet.create({
   },
   textInputFrom: {
     flexDirection: 'column',
-    marginTop: '5%',
+    marginTop: '4%',
   },
   flight_icon_dep: {
     width: 30,
@@ -62,5 +65,14 @@ const style = StyleSheet.create({
   textDestination: {
     fontSize: 19,
     color: textDarkColor,
+    flex: 0.5,
+    padding: -10,
+  },
+  dashLine: {
+    flex: 1,
+    marginLeft: 28,
+    marginTop: 6,
+    marginBottom: 10,
+    overflow: 'hidden',
   },
 });
